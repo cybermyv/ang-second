@@ -1,0 +1,14 @@
+<nav class="menu">
+  <ul>
+    <li>
+      <a routerLink='/users'>Список пользователей</a>
+    </li>
+    <li>
+      <a [routerLink]="[{ outlets: { userPopup: ['add-user'] } }]">Добавить пользователя</a>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
+<router-outlet name="userList"></router-outlet>
+<router-outlet name="userPopup"></router-outlet>
