@@ -29,6 +29,7 @@ export class ApiService {
         return this.http
             .post(API_URL + '/users', user)
             .map((response) => { return new User(user) })
+            
     }
 
     private handleError(error: Response | any) {

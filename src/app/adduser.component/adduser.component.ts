@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { User } from './../user';
 import { UserService } from "./../user.service";
@@ -11,22 +12,20 @@ import { UserService } from "./../user.service";
 })
 
 export class AddUserComponent {
-    users: User[] = [];
     newUser = new User();
+    constructor(private userService: UserService, private router: Router,  private location: Location) { };
 
-    constructor(private userService: UserService, private router: Router) { };
-
-    add(user) {
-        console.log('newUser', this.newUser);
-
-
+    add() {
         this.userService
-            .addUser(user)
-            .subscribe((newUser) => { this.users = this.users.concat(newUser) });
-
+            .addUser(this.newUser)
+            .subscribe()
+            
+            
+          
     };
 
     closeModal() {
+        this.location.back();
         this.router.navigate([{ outlets: { userPopup: null } }]);
     };
 }
