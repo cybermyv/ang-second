@@ -10,16 +10,20 @@ import { ApiService } from './api.service';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user.component/user.component';
 import { AddUserComponent } from './adduser.component/adduser.component';
+import { DelUserComponent } from './deluser.component/deluser.component';
+import {UpdUserComponent} from './edituser.component/edituser.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    AddUserComponent
+    AddUserComponent,
+    DelUserComponent,
+    UpdUserComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule

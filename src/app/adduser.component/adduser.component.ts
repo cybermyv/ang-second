@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { User } from './../user';
-import { UserService } from "./../user.service";
 
 @Component({
     selector: 'user-add',
@@ -12,20 +9,24 @@ import { UserService } from "./../user.service";
 })
 
 export class AddUserComponent {
-    newUser = new User();
-    constructor(private userService: UserService, private router: Router,  private location: Location) { };
+    newUser: User = new User();
 
-    add() {
-        this.userService
-            .addUser(this.newUser)
-            .subscribe()
-            
-            
-          
-    };
+    @Input() closable = true;
+    @Input() visible: boolean;
+    @Output() visibleCange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Output() add: EventEmitter<User> = new EventEmitter();
+
+    constructor() { };
+
+    addUser() {
+        this.add.emit(this.newUser);
+        this.newUser = new User();
+    }
 
     closeModal() {
-        this.location.back();
-        this.router.navigate([{ outlets: { userPopup: null } }]);
+        this.visible = false;
+        this.visibleCange.emit(this.visible);
+
     };
 }

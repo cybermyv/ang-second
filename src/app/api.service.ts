@@ -32,6 +32,20 @@ export class ApiService {
             
     }
 
+    public deleteUser(userId: number): Observable<null>{
+        return this.http
+        .delete(API_URL+ '/users/'+userId)
+        .map(response => null)
+        .catch(this.handleError);
+    }
+
+    public updsteUser(user: User): Observable<User>{
+        return this.http
+        .put(API_URL+'/users/'+user.id, user)
+        .map(response=>{return new User(response.json())})
+        .catch(this.handleError)
+    }
+
     private handleError(error: Response | any) {
         console.error('ApiService::handleError', error);
         return Observable.throw(error);

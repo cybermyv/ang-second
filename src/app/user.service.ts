@@ -2,22 +2,30 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Rx";
 
 import { ApiService } from './api.service';
-import {User} from './user';
+import { User } from './user';
 
 
 
 @Injectable()
-export class UserService{
-    
-   constructor(private api:ApiService){}
+export class UserService {
 
-    getUsers(): Observable<User[]>{
-      return this.api.getUsers();
+    constructor(private api: ApiService) { }
+
+    getUsers(): Observable<User[]> {
+        return this.api.getUsers();
 
     }
 
-    addUser(user:User):Observable<User>{
+    addUser(user: User): Observable<User> {
         return this.api.createUser(user);
+    }
+
+    deleteUser(userId: number): Observable<User> {
+        return this.api.deleteUser(userId);
+    }
+
+    updateUser(user: User):Observable<User>{
+        return this.api.updsteUser(user);
     }
 
 }

@@ -1,7 +1,16 @@
 <div class="user-list">
+    <button (click)="showDialogAdd = !showDialogAdd" class="btn">Добавить</button>
     <ul>
-        <li *ngFor="let user of users">
+        <li *ngFor="let user of users" (click)="onSelect(user)">
             {{user.id}} - {{user.login}} - {{user.pass}} - {{user.comment}}
+            
+            <!-- <button class="remove" (click)="onRemoveUser(user)">DEL</button> -->
+            <button (click)="showDialogDel = !showDialogDel" class="btn">Удалить</button>
+            <button (click)="showDialogUpd = !showDialogUpd" class="btn">Редактировать</button>
         </li>
     </ul>
+    <user-add [(visible)]="showDialogAdd" (add)="onAddUser($event)"></user-add>
+    <user-del [user]="selectedUser" [(visible)]="showDialogDel" (delete)="onRemoveUser($event)"></user-del>
+    <user-edit [user]="selectedUser" [(visible)]="showDialogUpd" (edit)="onUpdateUser($event)"></user-edit>
 </div>
+

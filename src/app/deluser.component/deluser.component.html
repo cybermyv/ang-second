@@ -1,0 +1,15 @@
+<div class="del-user-modal" *ngIf="visible">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span *ngIf="closable" (click)="closeModal()" class="close">&times;</span>
+            <h3>Удалить пользователя - {{user?.id}}</h3>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modl-footer">
+            <button (click)="delUser()">Удалить</button>
+            <button *ngIf="closable" (click)="closeModal()">Отмена</button>
+        </div>
+    </div>
+</div>

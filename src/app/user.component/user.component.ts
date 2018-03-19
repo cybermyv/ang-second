@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
 
 
     users: User[] = [];
+    selectedUser: User;
 
     constructor(private userService: UserService, private router: Router) { };
 
@@ -29,13 +30,31 @@ export class UserComponent implements OnInit {
             .subscribe(users => {
                 this.users = users
             });
+    };
+
+    onAddUser(user) {
+        this.userService
+            .addUser(user)
+            .subscribe(() => this.ngOnInit())
+    };
+
+    onRemoveUser(user) {
+        this.userService
+            .deleteUser(user.id)
+            .subscribe(() => this.ngOnInit())
+    };
+
+    onUpdateUser(user) {
+        this.userService
+            .updateUser(user)
+            .subscribe(() => this.ngOnInit())
+
     }
 
-    // onAddUser(user) {
-    //     this.userService
-    //         .addUser(user)
-    //         .subscribe(newUser=>{
-    //             this.users = this.users.concat(newUser)
-    //         })
-    // };
+
+    private onSelect(user: User) {
+        this.selectedUser = user;
+        //  console.log('selected', this.selectedUser);
+
+    };
 }

@@ -1,7 +1,7 @@
-<div class="add-user-modal">
+<div class="add-user-modal"  *ngIf="visible" >
     <div class="modal-content">
         <div class="modal-header">
-            <span class="close" (click)="closeModal()">&times;</span>
+            <span *ngIf="closable" (click)="closeModal()"  class="close">&times;</span>
             <h3>Добавляем нового пользователя</h3>
         </div>
         <div class="modal-body">
@@ -9,8 +9,8 @@
             <input class="new-user" placeholder="пароль" [(ngModel)]="newUser.pass">
             <input class="new-user" placeholder="комментарий" [(ngModel)]="newUser.comment">
         </div>
-        <div class="modl-footer">
-            <button (click)="add()">Сохранить</button>
+        <div class="modl-footer" >
+            <button (click)="addUser()">Сохранить</button>
         </div>
     </div>
 </div>
