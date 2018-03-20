@@ -25,7 +25,7 @@ export class UserService {
     }
 
     updateUser(user: User):Observable<User>{
-        return this.api.updsteUser(user);
+        return this.api.updateUser(user);
     }
 
 }

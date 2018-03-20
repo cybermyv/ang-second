@@ -5,9 +5,9 @@
                 <h3>Редактируем пользователя</h3>
             </div>
             <div class="modal-body">
-                <input class="new-user" placeholder="логин" [(ngModel)]="user.login">
-                <input class="new-user" placeholder="пароль" [(ngModel)]="user.pass">
-                <input class="new-user" placeholder="комментарий" [(ngModel)]="user.comment">
+                <input class="new-user" placeholder="логин" [(ngModel)]="updatedUser.login" [ngModelOptions]="{standalone: true}" >
+                <input class="new-user" placeholder="пароль" [(ngModel)]="updatedUser.pass" [ngModelOptions]="{standalone: true}">
+                <input class="new-user" placeholder="комментарий" [(ngModel)]="updatedUser.comment" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="modl-footer" >
                 <button (click)="editUser()">Сохранить</button>

@@ -47,8 +47,10 @@ export class UserComponent implements OnInit {
     onUpdateUser(user) {
         this.userService
             .updateUser(user)
-            .subscribe(() => this.ngOnInit())
-
+            .subscribe(
+            //    () => this.ngOnInit()
+            
+            )
     }
 
 

@@ -9,18 +9,22 @@ import { User } from './../user';
 })
 
 export class UpdUserComponent {
-    @Input() user: User;
+   // updatedUser:User;
+
+    @Input() updatedUser: User;
     @Input() closable = true;
     @Input() visible: boolean;
 
     @Output() visibleCange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() edit: EventEmitter<User> = new EventEmitter();
 
-    constructor() { };
+    constructor() {};
 
+    
     editUser() {
-        
-        this.edit.emit(this.user);
+      //  console.log('editUser', this.updatedUser);
+        // this.updatedUser = this.user;
+        this.edit.emit(this.updatedUser);
         this.closeModal();
     }
 
