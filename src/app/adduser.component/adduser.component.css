@@ -3,14 +3,14 @@
     position: absolute;
     top: 20%;
     left: 5%;
-    background:#ffff;
+    background:#BBD8DC;;
     border: 1px solid black;
 }
 
 .close {
     float: right;
     cursor: pointer;
-    background: #606061;
+    background: #369;
     color: #FFFFFF;
     line-height: 25px;
     position: absolute;
