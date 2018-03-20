@@ -47,16 +47,11 @@ export class UserComponent implements OnInit {
     onUpdateUser(user) {
         this.userService
             .updateUser(user)
-            .subscribe(
-            //    () => this.ngOnInit()
-            
-            )
-    }
+            .subscribe(() => this.ngOnInit())
+    };
 
 
     private onSelect(user: User) {
         this.selectedUser = user;
-        //  console.log('selected', this.selectedUser);
-
     };
 }

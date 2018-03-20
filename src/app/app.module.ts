@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user.component/user.component';
 import { AddUserComponent } from './adduser.component/adduser.component';
 import { DelUserComponent } from './deluser.component/deluser.component';
-import {UpdUserComponent} from './edituser.component/edituser.component';
-
+import { UpdUserComponent } from './edituser.component/edituser.component';
+import { GalleryComponent } from './gallery.component/gallery.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,11 @@ import {UpdUserComponent} from './edituser.component/edituser.component';
     UserComponent,
     AddUserComponent,
     DelUserComponent,
-    UpdUserComponent
+    UpdUserComponent,
+    GalleryComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule

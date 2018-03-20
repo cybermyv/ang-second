@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {UserComponent} from './user.component/user.component';
-import {AddUserComponent} from './adduser.component/adduser.component'
+import { UserComponent } from './user.component/user.component';
+import { GalleryComponent } from './gallery.component/gallery.component';
 
-const routes : Routes=[
+const routes: Routes = [
     {
         path: 'users',
         component: UserComponent
     },
     {
-        path: 'add-user',
-        component: AddUserComponent,
-        outlet: 'userPopup'
+        path: 'gallery',
+        component: GalleryComponent
     },
     {
-        path:'',
-        redirectTo:'/users',
-        pathMatch:'full'
+        path: '',
+        redirectTo: '/users',
+        pathMatch: 'full'
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
+
     exports: [RouterModule],
     providers: []
 })
