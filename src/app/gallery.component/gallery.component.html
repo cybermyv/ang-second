@@ -1,9 +1,10 @@
 <div class="gallery-list">
 
     <div class="file_upload">
-        <button type="button">Выбрать</button>
-        <div>Файл не выбран</div>
-        <input type="file">
+                <div>Файл не выбран</div>
+        <input type="file"  (change)="handleFileInput($event.target.files)">
+        <input type="text">
+        <button type="button" >Выбрать</button>
     </div>
 
 </div>

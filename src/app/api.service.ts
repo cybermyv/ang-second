@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { User } from './user';
+import { Image } from './image';
 
 const API_URL = environment.apiUrl;
 
@@ -42,9 +43,33 @@ export class ApiService {
 
     public updateUser(user: User): Observable<User> {
         return this.http
-            .put(API_URL + '/users' , user)
-            .map( response => null)
+            .put(API_URL + '/users', user)
+            .map(response => null)
             .catch(this.handleError)
+    }
+
+    //--- gallery
+
+    public getImages(): Observable<Image[]> {
+        return this.http
+            .get(API_URL + '/gallery')
+            .map((response) => { return response.json() })
+            .catch(this.handleError);
+    }
+
+    // public createImage (image: Image): Observable<Image>{
+    //     return this.http
+    //     .post(API_URL+'/gallery', image)
+    //     .map((response)=>{ return new Image(image)})
+    //     .catch(this.handleError)
+    // }
+
+    public createImage (image: FormData): Observable<boolean>{
+        return this.http
+        .post(API_URL+'/gallery', image)
+        // .map((response)=>{ return new Image(image)})
+        .map((response)=>null)
+        .catch(this.handleError)
     }
 
     private handleError(error: Response | any) {

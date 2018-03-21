@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app.routing.module';
 import { UserService } from './user.service';
+import { ImageService } from './image.service';
 import { ApiService } from './api.service';
 
 import { AppComponent } from './app.component';
@@ -29,7 +30,7 @@ import { GalleryComponent } from './gallery.component/gallery.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService, ApiService],
+  providers: [UserService, ImageService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
