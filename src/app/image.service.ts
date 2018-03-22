@@ -13,22 +13,18 @@ export class ImageService {
         return this.api.getImages()
     };
 
+    uploadFile(data: FormData):Observable<FormData>{
+        return this.api.uploadFile(data)
+    }
+
     // addImage(image: Image): Observable<Image> {
     //     return this.api.createImage(image)
     // }
 
-    postFile(fileToUpload: File): Observable<boolean> {
-    //    const endpoint = 'your-destination-url';
+    // postFile(fileToUpload: File): Observable<boolean> {
+    //     return this.api.postFile(fileToUpload);
+   
+    // }
 
-        const formData: FormData = new FormData();
 
-        formData.append('fileKey', fileToUpload, fileToUpload.name);
-
-        return this.api.createImage(formData);
-
-        // return this.httpClient
-        //   .post(endpoint, formData, { headers: yourHeadersConfig })
-        //   .map(() => { return true; })
-        //   .catch((e) => this.handleError(e));
-    }
 }

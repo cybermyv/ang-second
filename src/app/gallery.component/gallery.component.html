@@ -1,10 +1,18 @@
 <div class="gallery-list">
 
     <div class="file_upload">
+       <h2>Загрузка в базу</h2> 
                 <div>Файл не выбран</div>
         <input type="file"  (change)="handleFileInput($event.target.files)">
-        <input type="text">
-        <button type="button" >Выбрать</button>
+        
+        <!-- <button type="button" >Выбрать</button> -->
+    </div>
+
+    <div class="file_upload">
+        <h2>Загрузка в директорию</h2> 
+        
+        <input type="file" (change)="fileChangeEvent($event)" placeholder="Загрузка файла на сервер">
+        <button (click)="onUpload()">Загрузка</button>
     </div>
 
 </div>

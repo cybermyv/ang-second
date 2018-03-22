@@ -64,13 +64,30 @@ export class ApiService {
     //     .catch(this.handleError)
     // }
 
-    public createImage (image: FormData): Observable<boolean>{
+    // public createImage (image: FormData): Observable<boolean>{
+    //     return this.http
+    //     .post(API_URL+'/gallery', image)
+    //     // .map((response)=>{ return new Image(image)})
+    //     .map((response)=>null)
+    //     .catch(this.handleError)
+    // }
+
+    // public postFile(fileToUpload: File): Observable<boolean> {
+    //     const endpoint = API_URL+'/gallery';
+    //     const formData: FormData = new FormData();
+    //     formData.append('fileKey', fileToUpload, fileToUpload.name);
+    //     return this.http
+    //       .post(endpoint, formData)
+    //       .map(() => { return true; })
+    //       .catch((e) => this.handleError(e));
+    // }
+
+    public uploadFile(data: FormData): Observable<FormData> {
         return this.http
-        .post(API_URL+'/gallery', image)
-        // .map((response)=>{ return new Image(image)})
-        .map((response)=>null)
-        .catch(this.handleError)
-    }
+            .post(API_URL + '/upload', data)
+            .map((response) => { return response.json() })
+            .catch(this.handleError)
+    };
 
     private handleError(error: Response | any) {
         console.error('ApiService::handleError', error);

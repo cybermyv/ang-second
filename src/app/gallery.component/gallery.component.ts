@@ -11,23 +11,40 @@ import { ImageService } from './../image.service';
 
 export class GalleryComponent implements OnInit {
 
-    fileToUpload: File = null;
-
-    image: Image[] = [];
+    filesToUpload: Array<File> = [];
 
     constructor(private imageService: ImageService) { }
 
     public ngOnInit() {
-        this.onGetImage();
+
     };
 
-    onGetImage() {
+    onUpload() {
+        const formData = new FormData();
+        const files: Array<File> = this.filesToUpload;
+        console.log('upload', files);
+
+        formData.append('uploads[]', files[0]);
+
         this.imageService
-            .getImage()
-            .subscribe(
-                image => this.image = image
-            )
+            .uploadFile(formData)
+            .subscribe(files => {
+                console.log('subscribe ', files)
+            })
     }
+
+    fileChangeEvent(fileInput: any) {
+        this.filesToUpload = <Array<File>>fileInput.target.files;
+        console.log(this.filesToUpload);
+    }
+
+    // onGetImage() {
+    //     this.imageService
+    //         .getImage()
+    //         .subscribe(
+    //             image => this.image = image
+    //         )
+    // }
 
 
     // onAddImage(image){
@@ -36,19 +53,19 @@ export class GalleryComponent implements OnInit {
     //     .subscribe(()=>this.ngOnInit());
     // }
 
-    handleFileInput(files: FileList) {
+    // handleFileInput(files: FileList) {
 
-        this.fileToUpload = files.item(0);
-        this.uploadFileToActivity();
+    //     this.fileToUpload = files.item(0);
+    //     this.uploadFileToActivity();
 
-        console.log(this.fileToUpload);
-    }
+    //     console.log(this.fileToUpload);
+    // }
 
-    uploadFileToActivity() {
-        this.imageService.postFile(this.fileToUpload).subscribe(data => {
-          // do something, if upload success
-          }, error => {
-            console.log(error);
-          });
-      }
+    // uploadFileToActivity() {
+    //     this.imageService.postFile(this.fileToUpload).subscribe(data => {
+    //       // do something, if upload success
+    //       }, error => {
+    //         console.log(error);
+    //       });
+    //   }
 };
