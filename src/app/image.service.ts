@@ -13,18 +13,11 @@ export class ImageService {
         return this.api.getImages()
     };
 
-    uploadFile(data: FormData):Observable<FormData>{
+    uploadFile(data: FormData): Observable<FormData> {
         return this.api.uploadFile(data)
     }
 
-    // addImage(image: Image): Observable<Image> {
-    //     return this.api.createImage(image)
-    // }
-
-    // postFile(fileToUpload: File): Observable<boolean> {
-    //     return this.api.postFile(fileToUpload);
-   
-    // }
-
-
+    insertImage(data: FormData): Observable<FormData> {
+        return this.api.insertImage(data)
+    }
 }

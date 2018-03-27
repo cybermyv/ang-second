@@ -13,6 +13,8 @@ export class GalleryComponent implements OnInit {
 
     filesToUpload: Array<File> = [];
 
+    fileToInsert: File;
+
     constructor(private imageService: ImageService) { }
 
     public ngOnInit() {
@@ -20,11 +22,16 @@ export class GalleryComponent implements OnInit {
     };
 
     onUpload() {
+
+        console.log('onUpload');
         const formData = new FormData();
         const files: Array<File> = this.filesToUpload;
-        console.log('upload', files);
+
+
 
         formData.append('uploads[]', files[0]);
+
+        console.log('upload', formData);
 
         this.imageService
             .uploadFile(formData)
@@ -35,37 +42,25 @@ export class GalleryComponent implements OnInit {
 
     fileChangeEvent(fileInput: any) {
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        console.log(this.filesToUpload);
+        console.log('to upload', this.filesToUpload);
     }
 
-    // onGetImage() {
-    //     this.imageService
-    //         .getImage()
-    //         .subscribe(
-    //             image => this.image = image
-    //         )
-    // }
+    //-- Insert into db
+    fileCangeEventDb(flie: any) {
+        this.filesToUpload = <Array<File>>flie.target.files;
+        console.log('to insert', this.filesToUpload);
+    }
+
+    onInsertDb() {
+        const payload = new FormData();
+        const file: Array<File> = this.filesToUpload;
+
+        payload.append('image', file[0]);
+
+        this.imageService
+            .insertImage(payload)
+            .subscribe(file => { console.log('insert ОК', file) })
+    }
 
 
-    // onAddImage(image){
-    //     this.imageService
-    //     .addImage(image)
-    //     .subscribe(()=>this.ngOnInit());
-    // }
-
-    // handleFileInput(files: FileList) {
-
-    //     this.fileToUpload = files.item(0);
-    //     this.uploadFileToActivity();
-
-    //     console.log(this.fileToUpload);
-    // }
-
-    // uploadFileToActivity() {
-    //     this.imageService.postFile(this.fileToUpload).subscribe(data => {
-    //       // do something, if upload success
-    //       }, error => {
-    //         console.log(error);
-    //       });
-    //   }
 };
