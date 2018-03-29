@@ -1,13 +1,21 @@
 <div class="gallery-list">
+    <H3> {{loader}}</H3>
     <div class="file_upload">
-        <h2>Загрузка в базу</h2>
+
         <div>Файл не выбран</div>
         <input type="file" (change)="fileCangeEventDb($event)">
         <button (click)="onInsertDb()">Вставить</button>
     </div>
-    <div class="file_upload">
+    <ul class="image">
+        <li *ngFor="let image of images">
+            {{image.id}} - {{image.name}} - {{image.image}}
+        </li>
+    </ul>
+</div>
+
+
+    <!-- <div class="file_upload">
         <h2>Загрузка в директорию</h2>
         <input type="file" (change)="fileChangeEvent($event)" placeholder="Загрузка файла на сервер">
         <button (click)="onUpload()">Загрузка</button>
-    </div>
-</div>
+    </div> -->

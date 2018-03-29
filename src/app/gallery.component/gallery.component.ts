@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import 'rxjs/operators/map';
 
 import { Image } from './../image';
 import { ImageService } from './../image.service';
@@ -13,25 +14,23 @@ export class GalleryComponent implements OnInit {
 
     filesToUpload: Array<File> = [];
 
-    fileToInsert: File;
+    images: Image[] = [];
+    
+    loader = 'Загрузка ... ';
 
-    constructor(private imageService: ImageService) { }
+    constructor(private imageService: ImageService) {}
 
     public ngOnInit() {
-
+        this.imageService
+            .getImage()
+            .finally(() => this.loader = 'Загрузка завершена')
+            .subscribe((res) => { this.images = res})
     };
 
     onUpload() {
-
-        console.log('onUpload');
         const formData = new FormData();
         const files: Array<File> = this.filesToUpload;
-
-
-
         formData.append('uploads[]', files[0]);
-
-        console.log('upload', formData);
 
         this.imageService
             .uploadFile(formData)
@@ -54,12 +53,10 @@ export class GalleryComponent implements OnInit {
     onInsertDb() {
         const payload = new FormData();
         const file: Array<File> = this.filesToUpload;
-
         payload.append('image', file[0]);
-
         this.imageService
             .insertImage(payload)
-            .subscribe(file => { console.log('insert ОК', file) })
+            .subscribe(() => { this.ngOnInit() })
     }
 
 
