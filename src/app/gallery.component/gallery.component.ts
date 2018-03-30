@@ -24,25 +24,25 @@ export class GalleryComponent implements OnInit {
         this.imageService
             .getImage()
             .finally(() => this.loader = 'Загрузка завершена')
-            .subscribe((res) => { this.images = res})
+            .subscribe((res) => { this.images = res; console.log(this.images)})
     };
 
-    onUpload() {
-        const formData = new FormData();
-        const files: Array<File> = this.filesToUpload;
-        formData.append('uploads[]', files[0]);
+    // onUpload() {
+    //     const formData = new FormData();
+    //     const files: Array<File> = this.filesToUpload;
+    //     formData.append('uploads[]', files[0]);
 
-        this.imageService
-            .uploadFile(formData)
-            .subscribe(files => {
-                console.log('subscribe ', files)
-            })
-    }
+    //     this.imageService
+    //         .uploadFile(formData)
+    //         .subscribe(files => {
+    //             console.log('subscribe ', files)
+    //         })
+    // }
 
-    fileChangeEvent(fileInput: any) {
-        this.filesToUpload = <Array<File>>fileInput.target.files;
-        console.log('to upload', this.filesToUpload);
-    }
+    // fileChangeEvent(fileInput: any) {
+    //     this.filesToUpload = <Array<File>>fileInput.target.files;
+    //     console.log('to upload', this.filesToUpload);
+    // }
 
     //-- Insert into db
     fileCangeEventDb(flie: any) {

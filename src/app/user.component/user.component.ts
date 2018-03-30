@@ -13,8 +13,6 @@ import { UserService } from "./../user.service";
 })
 
 export class UserComponent implements OnInit {
-
-
     users: User[] = [];
     selectedUser: User;
 
