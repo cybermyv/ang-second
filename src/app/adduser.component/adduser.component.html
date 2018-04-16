@@ -1,4 +1,36 @@
-<div class="add-user-modal"  *ngIf="visible" >
+<div class="add-user-modal" *ngIf="visible">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span *ngIf="closable" (click)="closeModal()" class="close">&times;</span>
+            <h3>Добавляем нового пользователя</h3>
+        </div>
+
+        <form [formGroup]="addUserForm" (ngSubmit)="saveForm(addUserForm.value)">
+            <label for="login">Логин</label>
+            <input type="text" id="login" formControlName="login">
+            <br/>
+            <br/>
+
+            <label for="pass">Пароль</label>
+            <input type="text" id="pass" formControlName="pass">
+            <br/>
+            <br/>
+
+            <label for="comment">Комментарий</label>
+            <input type="text" id="comment" formControlName="comment">
+            <br/>
+            <br/>
+
+            <button type="submit">Добавить</button>
+        </form>
+        
+        <div>{{addUserForm.value|json}}</div>
+       
+    </div>
+</div>
+
+
+<!-- <div class="add-user-modal"  *ngIf="visible" >
     <div class="modal-content">
         <div class="modal-header">
             <span *ngIf="closable" (click)="closeModal()"  class="close">&times;</span>
@@ -13,4 +45,4 @@
             <button (click)="addUser()">Сохранить</button>
         </div>
     </div>
-</div>
+</div> -->

@@ -1,5 +1,6 @@
 .add-user-modal {
     z-index: 100;
+    width: 400px;
     position: absolute;
     top: 20%;
     left: 5%;
