@@ -5,7 +5,8 @@
             {{user.id}} - {{user.login}} - {{user.pass}} - {{user.comment}}
             <span class="buttons">
                 <button (click)="showDialogDel = !showDialogDel" class="btn">Удалить</button>
-                <button (click)="showDialogUpd = !showDialogUpd" class="btn">Редактировать</button>
+                <!-- <button (click)="showDialogUpd = !showDialogUpd" class="btn">Редактировать</button> -->
+                <button (click)="showRouteEdit(user.id)" class="btn">Редактировать</button>
             </span>
         </li>
     </ul>

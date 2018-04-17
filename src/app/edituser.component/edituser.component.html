@@ -5,13 +5,39 @@
                 <h3>Редактируем пользователя</h3>
             </div>
             <div class="modal-body">
-                <input class="new-user" placeholder="логин" [(ngModel)]="updatedUser.login" [ngModelOptions]="{standalone: true}" >
-                <input class="new-user" placeholder="пароль" [(ngModel)]="updatedUser.pass" [ngModelOptions]="{standalone: true}">
-                <input class="new-user" placeholder="комментарий" [(ngModel)]="updatedUser.comment" [ngModelOptions]="{standalone: true}">
+                <form [formGroup]= "editUserForm" (ngSubmit)="saveForm(editUserForm.value)">
+                        <label for="login">Логин</label>
+                        <input type="text" id="login" formControlName="login" >
+
+                        <label for="pass">Пароль</label>
+                        <input type="text" id="pass" formControlName="pass">
+
+                        <label for="comment">Комментарий</label>
+                        <input type="text" id="comment" formControlName="comment">
+
+                </form>
             </div>
             <div class="modl-footer" >
-                <button (click)="editUser()">Сохранить</button>
+                <button type="submit">Сохранить</button>
             </div>
         </div>
     </div>
     
+
+    <!-- <div class="edit-user-modal"  *ngIf="visible" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span *ngIf="closable" (click)="closeModal()"  class="close">&times;</span>
+                    <h3>Редактируем пользователя</h3>
+                </div>
+                <div class="modal-body">
+                    <input class="new-user" placeholder="логин" [(ngModel)]="updatedUser.login" [ngModelOptions]="{standalone: true}" >
+                    <input class="new-user" placeholder="пароль" [(ngModel)]="updatedUser.pass" [ngModelOptions]="{standalone: true}">
+                    <input class="new-user" placeholder="комментарий" [(ngModel)]="updatedUser.comment" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="modl-footer" >
+                    <button (click)="editUser()">Сохранить</button>
+                </div>
+            </div>
+        </div>
+         -->

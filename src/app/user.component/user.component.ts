@@ -49,7 +49,12 @@ export class UserComponent implements OnInit {
     };
 
 
-    private onSelect(user: User) {
+    private onSelect(user: User):User {
         this.selectedUser = user;
+      return this.selectedUser
     };
+
+    showRouteEdit(id){
+        this.router.navigate([{outlets: { userPopup: ['useredit', id]}}])
+    }
 }

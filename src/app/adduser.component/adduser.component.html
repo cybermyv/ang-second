@@ -8,6 +8,10 @@
         <form [formGroup]="addUserForm" (ngSubmit)="saveForm(addUserForm.value)">
             <label for="login">Логин</label>
             <input type="text" id="login" formControlName="login">
+
+            <div class="error" *ngIf="isControlInvalid('login')">
+                Логин должен состоять только из русских букв
+            </div>
             <br/>
             <br/>
 
@@ -20,12 +24,10 @@
             <input type="text" id="comment" formControlName="comment">
             <br/>
             <br/>
-
-            <button type="submit">Добавить</button>
+            <div class="modl-footer">
+                <button type="submit">Добавить</button>
+            </div>
         </form>
-        
-        <div>{{addUserForm.value|json}}</div>
-       
     </div>
 </div>
 

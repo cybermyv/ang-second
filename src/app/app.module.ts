@@ -14,6 +14,7 @@ import { AddUserComponent } from './adduser.component/adduser.component';
 import { DelUserComponent } from './deluser.component/deluser.component';
 import { UpdUserComponent } from './edituser.component/edituser.component';
 import { GalleryComponent } from './gallery.component/gallery.component';
+import { EditRouteComponent} from './editroute.component/editroute.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GalleryComponent } from './gallery.component/gallery.component';
     AddUserComponent,
     DelUserComponent,
     UpdUserComponent,
-    GalleryComponent
+    GalleryComponent,
+    EditRouteComponent
   ],
   imports: [
     BrowserModule,

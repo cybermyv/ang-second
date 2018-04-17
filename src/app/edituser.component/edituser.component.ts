@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { User } from './../user';
 
@@ -8,8 +9,8 @@ import { User } from './../user';
     styleUrls: ['./edituser.component.css']
 })
 
-export class UpdUserComponent {
-   // updatedUser:User;
+export class UpdUserComponent implements OnInit{
+   editUserForm: FormGroup;
 
     @Input() updatedUser: User;
     @Input() closable = true;
@@ -17,13 +18,26 @@ export class UpdUserComponent {
 
     @Output() visibleCange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() edit: EventEmitter<User> = new EventEmitter();
+    
 
-    constructor() {};
+    constructor(private fb: FormBuilder) {}
 
+    ngOnInit() {
+
+       
+     this.initForm();
+    }
+
+    initForm() {
+
+        this.editUserForm = this.fb.group({
+          login: ["1"],
+          pass: ["2"],
+          comment: ["3"]
+        });
+      }
     
     editUser() {
-      //  console.log('editUser', this.updatedUser);
-        // this.updatedUser = this.user;
         this.edit.emit(this.updatedUser);
         this.closeModal();
     }

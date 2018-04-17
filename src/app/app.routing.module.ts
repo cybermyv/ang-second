@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserComponent } from './user.component/user.component';
 import { GalleryComponent } from './gallery.component/gallery.component';
+import { EditRouteComponent} from './editroute.component/editroute.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,11 @@ const routes: Routes = [
         path: '',
         redirectTo: '/users',
         pathMatch: 'full'
+    },
+    {
+        path:'useredit/:id',
+        component: EditRouteComponent,
+        outlet: 'userPopup'
     }
 ];
 

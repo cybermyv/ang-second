@@ -1,50 +1,59 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
-import { User } from './../user';
+import { User } from "./../user";
 
 @Component({
-    selector: 'user-add',
-    templateUrl: './adduser.component.html',
-    styleUrls: ['./adduser.component.css']
+  selector: "user-add",
+  templateUrl: "./adduser.component.html",
+  styleUrls: ["./adduser.component.css"]
 })
-
 export class AddUserComponent implements OnInit {
-    addUserForm: FormGroup;
+  addUserForm: FormGroup;
 
-    newUser: User = new User();
-    @Input() visible: boolean;
-    @Input() closable = true;
-    @Output() visibleCange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() add: EventEmitter<User> = new EventEmitter();
+  newUser: User = new User();
 
-    constructor (private fb: FormBuilder){}
+  @Input() visible: boolean;
+  @Input() closable = true;
+  @Output() visibleCange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() add: EventEmitter<User> = new EventEmitter();
 
-    ngOnInit(){
-        this.initForm();
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.addUserForm = this.fb.group({
+      login: ["", [Validators.required, Validators.pattern(/[А-я]/)]],
+      pass: [""],
+      comment: [""]
+    });
+  }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.addUserForm.controls[controlName];
+    const result = control.invalid && control.touched;
+    return result;
+  }
+
+  closeModal() {
+    this.visible = false;
+    this.visibleCange.emit(this.visible);
+  }
+
+  saveForm(formValues: any) {
+    const controls = this.addUserForm.controls;
+    if (this.addUserForm.invalid) {
+        Object.keys(controls).forEach(controlName=>controls[controlName].markAsTouched());
+        return
     }
 
-    initForm(){
-        this.addUserForm = this.fb.group({
-            login: [''],
-            pass:[''],
-            comment: [''] 
-        })
-    }
-
-    closeModal() {
-                this.visible = false;
-                this.visibleCange.emit(this.visible);
-        
-            };
-
-    saveForm(formValues:any){
-        console.log(formValues);
-
-        this.add.emit(this.newUser);
-        this.newUser = new User();
-        return false;
-    }        
+    this.newUser = this.addUserForm.value;
+    this.add.emit(this.newUser);
+    this.addUserForm.reset();
+  }
 }
 
 // export class AddUserComponent {

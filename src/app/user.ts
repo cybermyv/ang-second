@@ -1,5 +1,5 @@
 export class User {
-    id: string = '';
+    id: number;
     login: string = '';
     pass: string = '';
     comment: string = '';

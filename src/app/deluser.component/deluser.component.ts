@@ -19,7 +19,7 @@ export class DelUserComponent {
     constructor() { };
 
     delUser() {
-        //console.log('Удаляю -', this.user);
+        
         this.delete.emit(this.user);
         this.closeModal();
     }
