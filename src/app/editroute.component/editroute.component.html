@@ -1,3 +1,35 @@
-<p>модальное окно для редактирования</p>
+<div *ngIf="user" class="add-user-modal">
+    <div class="modal-header">
+            <span class="close" (click)="closeModal()" >&times;</span>
+        <h3>Редактирование</h3>
+    </div>
 
-<div *ngIf="user">{{user.id}}: {{user.login}}</div>
+    <div class="modal-content">
+        <form [formGroup]="editUsersForm" (ngSubmit)="saveForm(editUsersForm.value)">
+            <label for="login">Логин</label>
+            <input type="text" id="login" formControlName="login">
+            <br/>
+            <br/>
+            <label for="pass">Пароль</label>
+            <input type="text" id="pass" formControlName="pass">
+            <br/>
+            <br/>
+            <label for="comment">Комментарий</label>
+            <input type="text" id="comment" formControlName="comment">
+            <br/>
+            <br/>
+    
+            <div class="modal-footer">
+                <button type="submit">Добавить</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+
+<!-- <p>модальное окно для редактирования</p>
+
+<div *ngIf="user">{{user.id}}: {{user.login}}</div> -->

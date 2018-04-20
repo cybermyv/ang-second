@@ -1,31 +1,54 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Rx";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
-import { ApiService } from './api.service';
-import { User } from './user';
-
-
+import { ApiService } from "./api.service";
+import { User } from "./user";
 
 @Injectable()
 export class UserService {
+  
+    private userSource : BehaviorSubject<User[]>;
+    
+     
 
-    constructor(private api: ApiService) { }
+  
 
-    getUsers(): Observable<User[]> {
-        return this.api.getUsers();
+  constructor(private api: ApiService) {
+    this.userSource = <BehaviorSubject<User[]>> new BehaviorSubject([]);
+    
+    
+  }
+  
+changeUsers(users){
+   
+   this.userSource.next(users);
+    // this.userSource.asObservable();
+    console.log('changeUsers service',this.userSource.asObservable());
+    return  this.userSource.getValue();
+}
 
-    }
+  getUsers(): Observable<User[]> {
+    return this.api.getUsers()
+  }
 
-    addUser(user: User): Observable<User> {
-        return this.api.createUser(user);
-    }
+// getUsers(){
+//     return this.userSource.asObservable();
+// }
 
-    deleteUser(userId: number): Observable<User> {
-        return this.api.deleteUser(userId);
-    }
+  getUserById(id): Observable<User> {
+    return this.api.getUsersByID(id);
+  }
 
-    updateUser(user: User):Observable<User>{
-        return this.api.updateUser(user);
-    }
+  addUser(user: User): Observable<User> {
+    return this.api.createUser(user);
+  }
 
+  deleteUser(userId: number): Observable<User> {
+    return this.api.deleteUser(userId);
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.api.updateUser(user);
+  }
 }
